@@ -1,0 +1,9 @@
+Nome e RM dos integrantes:
+- Nome do integrante 1 - RM000000
+- Nome do integrante 2 - RM000000
+
+Link do repositorio do frontend:
+https://github.com/usuario/repositorio
+
+Link do video:
+https://link-do-video
