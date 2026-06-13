@@ -1,9 +1,13 @@
 Nome e RM dos integrantes:
-- Nome do integrante 1 - RM000000
-- Nome do integrante 2 - RM000000
+- Davi da Silva Biaggioli - RM552581
+- Jean Lucas Loureiro Depieri - RM555797
+- Joao Gabriel De Bortoli Ribeiro - RM554601
+- Lucas Akira Watanabe - RM554875
+- Luiz Guilherme de Souza Varischi - RM559028
+- Francisco Ferrara Neto - RM557209
 
 Link do repositorio do frontend:
-https://github.com/usuario/repositorio
+https://github.com/Akira034567/Sprint2_1Sem2026_Advanced-Programming-Mobile-Dev
 
 Link do video:
-https://link-do-video
+https://youtu.be/-kChEoiUols
