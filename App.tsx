@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useMemo, useState } from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 
 import { mockRegistros } from "./src/data/registros";
@@ -9,12 +10,47 @@ import { ListaRegistrosScreen } from "./src/screens/ListaRegistrosScreen";
 
 type Screen = "lista" | "cadastro" | "detalhe";
 
+const STORAGE_KEY = "@sprint2:registros-industriais";
+
 export default function App() {
   const [registros, setRegistros] = useState<RegistroIndustrial[]>(mockRegistros);
+  const [registrosCarregados, setRegistrosCarregados] = useState(false);
   const [screen, setScreen] = useState<Screen>("lista");
   const [registroSelecionadoId, setRegistroSelecionadoId] = useState<number | null>(
     null
   );
+
+  useEffect(() => {
+    async function carregarRegistros() {
+      try {
+        const registrosSalvos = await AsyncStorage.getItem(STORAGE_KEY);
+
+        if (registrosSalvos) {
+          setRegistros(JSON.parse(registrosSalvos) as RegistroIndustrial[]);
+        }
+      } catch (error) {
+        console.warn("Nao foi possivel carregar os registros.", error);
+      } finally {
+        setRegistrosCarregados(true);
+      }
+    }
+
+    carregarRegistros();
+  }, []);
+
+  useEffect(() => {
+    async function salvarRegistros() {
+      try {
+        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(registros));
+      } catch (error) {
+        console.warn("Nao foi possivel salvar os registros.", error);
+      }
+    }
+
+    if (registrosCarregados) {
+      salvarRegistros();
+    }
+  }, [registros, registrosCarregados]);
 
   const registroSelecionado = useMemo(
     () => registros.find((registro) => registro.id === registroSelecionadoId),
